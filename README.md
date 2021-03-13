@@ -4,7 +4,7 @@ This repository countains two programs, MRR and MKTR, that relax plans into more
 MRR finds a *minimum reinstantiated reorder* of the input plan, that is, it searches for the set of variable bindings that allow for the greatest reduction in its ordering constraints.
 MKTR relaxes a plan into a minimal *partial plan*, which specifies which operators must be executed without fully specifying their order or their variable bindings.
 
-For a complete description of MRR please see the IJCAI 2020 paper by Waters et al., [*Optimising Partial-Order Plans Via Action Reinstantiation*](https://www.ijcai.org/Proceedings/2020/573), and for MKTR, please see the ICAPS 2018 paper by Waters et al, [*Plan Relaxation via Action Debinding and Deordering*](https://www.aaai.org/ocs/index.php/ICAPS/ICAPS18/paper/viewPaper/17765)
+For a complete description of MRR please see the IJCAI 2020 paper by Waters et al., [*Optimising Partial-Order Plans Via Action Reinstantiation*](https://www.ijcai.org/Proceedings/2020/573), and for MKTR, please see the ICAPS 2018 paper by Waters et al., [*Plan Relaxation via Action Debinding and Deordering*](https://www.aaai.org/ocs/index.php/ICAPS/ICAPS18/paper/viewPaper/17765)
 
 ## Compilation
 
@@ -20,11 +20,7 @@ The following programs must be installed:
 * [ant](http://ant.apache.org)
 * [Python 3](https://www.python.org/)
 
-From the root directory run:
-```
-ant build
-```
-The required Java code will be compiled into `lib/pplib-0.1.2.jar`.
+From the root directory run `ant build`. The required Java code will be compiled into `lib/pplib-0.1.2.jar`.
 
 ## Dependencies
 
@@ -34,7 +30,7 @@ MRR requires the following programs:
 * [MaxPre](https://github.com/Laakeri/maxpre)
 * [Nauty](https://pallini.di.uniroma1.it/)
 
-The programs `dreadnaut`, `loandra`, `maxpre` must be in the `PATH`.
+The programs `dreadnaut`, `loandra` and `maxpre` must be in the `PATH`.
 
 MKTR requires the following programs:
 
@@ -62,10 +58,12 @@ Some configurations can be extended with symmetry breaking constraints that redu
 ## Running MRR
 
 Run MRR with the following command:
+
 ```
 mrr.py [-h] --dfile DOMAIN --ifile PROBLEM --pfile PLAN --encoder ENCODER [--verbose]
 			  	 
 ```
+
 Required arguments:
 
 * `--dfile DOMAIN`: The location of the PDDL domain file.
@@ -114,11 +112,13 @@ The output to the MKTR is a CSP of bounded treewidth, each solution to which rep
 
 Run MKTR with the following command:
 
+
 ```
 mktr.py [-h] --dfile DOMAIN --ifile PROBLEM --pfile PLAN 
              --tw TW --pol POL 
              [--time TIME] [--validate] [--verbose] [--count] 	 
 ```
+
 Required arguments:
 
 * `--dfile DOMAIN`: The location of the PDDL domain file.
