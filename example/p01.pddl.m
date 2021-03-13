@@ -1,0 +1,7 @@
+STEP 0: calibrate(rover0,camera0,objective1,waypoint3)
+STEP 1.0: sample_rock(rover0,rover0store,waypoint3)
+STEP 1.1: navigate(rover0,waypoint3,waypoint1)
+STEP 2.0: communicate_rock_data(rover0,general,waypoint3,waypoint1,waypoint0) drop(rover0,rover0store) take_image(rover0,waypoint1,objective1,camera0,high_res)
+STEP 2.1: navigate(rover0,waypoint1,waypoint2)
+STEP 3: calibrate(rover0,camera0,objective1,waypoint2) sample_soil(rover0,rover0store,waypoint2)
+STEP 4: communicate_image_data(rover0,general,objective1,high_res,waypoint2,waypoint0) communicate_soil_data(rover0,general,waypoint2,waypoint2,waypoint0) take_image(rover0,waypoint2,objective1,camera0,high_res)

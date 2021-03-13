@@ -1,0 +1,66 @@
+<!--
+    MKTR - Minimal k-Treewidth Relaxation
+   
+    Copyright (C) 2018 
+    Max Waters (max.waters@rmit.edu.au)
+    RMIT University, Melbourne VIC 3000
+   
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+   
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+    GNU General Public License for more details.
+   
+    You should have received a copy of the GNU General Public License
+    along with this program. If not, see <http://www.gnu.org/licenses/>.
+ -->
+<project name="mktr" default="clean-build">
+	
+	<property name="version"     		value="0.1.1"/>
+	
+	<property name="src.dir"     		value="src"/>
+	<property name="lib.dir" 			value="lib"/>	
+	<property name="build.dir"  		value="build"/>
+	<property name="build.bin.dir" 		value="${build.dir}"/>
+	<property name="build.src.dir" 		value="${build.dir}/src"/>
+	
+	<property name="jar.name"  			value="${lib.dir}/pplib-${version}.jar"/>
+	
+	<property name="args4j.lib"			value="lib/args4j-2.33.jar" />
+	<property name="pddl4j.lib"			value="lib/pddl4j-3.5.0.jar" />
+	<property name="libtw.lib"			value="lib/libtw.jar" />
+		
+	<path id="classpath">
+		<pathelement location="${args4j.lib}"/>
+		<pathelement location="${pddl4j.lib}"/>		
+		<pathelement location="${libtw.lib}"/>
+	</path>
+	
+	<target name="clean">
+		<delete file="${jar.name}"/>	
+	</target>
+
+	<target name="build">
+		<mkdir dir="${build.bin.dir}"/>
+		<javac srcdir="${src.dir}" destdir="${build.bin.dir}" 
+				includeantruntime="false" debug="on" classpathref="classpath" />	
+				
+		<mkdir dir="${build.src.dir}"/>
+		<copy todir="${build.src.dir}">
+			<fileset dir="${src.dir}" />
+		</copy>
+				
+		<jar destfile="${jar.name}" basedir="${build.dir}" />
+				
+		<delete dir="${build.dir}"/>	
+	</target>
+	
+	<target name="clean-build" depends="clean,build">	
+	</target>
+		
+
+</project>
