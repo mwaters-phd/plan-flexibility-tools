@@ -1,5 +1,6 @@
+#!/usr/local/bin/python3
+
 import argparse
-import os
 import shutil
 import subprocess
 import time
@@ -115,7 +116,7 @@ def main():
     parser.add_argument("--dfile", help="Domain file name (eg domain.pddl)", required=True)
     parser.add_argument("--ifile", help="Problem instance file name (eg problem_02.pddl)", required=True)
     parser.add_argument("--pfile", help="Plan file (eg problem_02.pddl.m)", required=True)
-    parser.add_argument("--alg", help="Optimisation algorithm", required=True, choices=["MD", "MR", "MR_OPSB", "MRD", "MRR", "MRR_OPSB", "MRR_CSSB"])
+    parser.add_argument("--encoder", help="MaxSAT encoder", required=True, choices=["MD", "MR", "MR_OPSB", "MRD", "MRR", "MRR_OPSB", "MRR_CSSB"])
     parser.add_argument("--time", help="Time limit in minutes", type=float, default=30.0)
     parser.add_argument("--verbose", help="Verbose mode", action='store_true')
 
@@ -125,7 +126,7 @@ def main():
     problem_file = args.ifile
     plan_file = args.pfile
     results_file = "mrr-results.csv"
-    alg = args.alg
+    alg = args.encoder
     time_limit = args.time
     time_limit_ms = time_limit * 60000
     verbose = args.verbose
