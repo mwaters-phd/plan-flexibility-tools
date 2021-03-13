@@ -18,4 +18,5 @@ Thumbs.db
 # output by mktr and mrr
 *.mzn
 *.csv
+*.pop
 /temp

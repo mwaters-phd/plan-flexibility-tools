@@ -57,8 +57,8 @@ public class MrrMain {
 		long time = TimeUnit.SECONDS.toMillis((long) (options.time * 60));
 
 		MrrResult result = new MrrResult();
-		result.domainName = new File(options.domainFile.getParent()).getName();
-		result.problemName = options.problemFile.getName().split(".pddl")[0];
+		result.domainName = options.domainFile.getName();
+		result.problemName = options.problemFile.getName();
 		result.planFileName = options.planFile.getName();
 		result.algorithm = options.algorithm;
 		result.acycl = options.algorithm.acyc;

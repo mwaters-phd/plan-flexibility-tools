@@ -1,13 +1,9 @@
 import argparse
-import os
-import platform
 import subprocess
-import time
-from pathlib import Path
 
 JAVA_MAIN = "au.rmit.agtgrp.pplib.pp.mktr.MktrMain"
 JAVA_VM_ARGS = "-Xmx8G"
-JAVA_CLASSPATH = "./lib/pplib-0.1.1.jar:./lib/args4j-2.33.jar:./lib/libtw.jar:./lib/pddl4j-3.5.0.jar"
+JAVA_CLASSPATH = "./lib/pplib-0.1.2.jar:./lib/args4j-2.33.jar:./lib/libtw.jar:./lib/pddl4j-3.5.0.jar"
 
 TEMP_DIR = "./temp"
 
