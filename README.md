@@ -128,7 +128,7 @@ Required arguments:
 * `--pol POL`: The relaxation policy. Options are: 
 	* `MinimiseThreats`: Add the causal link with the fewest threats.
 	* `MinimiseThreatsMultiLex`: As `MinimiseThreats` but with additional causal structure symmetry breaking.
-    * `RelaxProducers`: Relax the bindings of producers with many consumers.
+    * `RelaxProducers`: Relax the bindings of the producers with the most consumers.
 	* `RelaxProducersMultiLex`: As `RelaxProducers` but with additional causal structure symmetry breaking.
   
 Options:
