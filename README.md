@@ -101,7 +101,7 @@ MKTR is an application for finding *re-instantiations* of a plan, i.e., alternat
 A set of re-instantiations can be compactly represented as a *constraint formula*, i.e., a formula expressed in a fragment of first-order logic, where each model represents an alternative to the original plan.
 While computing a model of a constraint formula is an NP-complete problem, if the formula's *treewidth* is bounded by `k`, a model can be found in time `O(n^k)`.
 
-MKTR first generates a constraint formula with just one model, the original plan.
+MKTR first generates a constraint formula that is equivalent to a simple deordering of the original plan.
 It then iteratively and greedily relaxes this formula, while keeping its treewidth below an input value.
 When the formula cannot be relaxed any further without its treewidth exceeding the input value, the final constraint formula is returned.
 
@@ -114,9 +114,8 @@ Run MKTR with the following command:
 
 
 ```
-mktr.py [-h] --dfile DOMAIN --ifile PROBLEM --pfile PLAN 
-             --tw TW --pol POL 
-             [--time TIME] [--validate] [--verbose] [--count] 	 
+mktr.py [-h] --dfile DOMAIN --ifile PROBLEM --pfile PLAN --tw TW --pol POL 
+        [--time TIME] [--validate] [--verbose] [--count] 	 
 ```
 
 Required arguments:
