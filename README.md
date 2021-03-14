@@ -96,9 +96,9 @@ The `example` directory contains a small planning instance from the IPC `rovers`
 
 # MKTR: Minimal k-Treewidth Relaxation
 
-MKTR is an application for finding *re-instantiations* of a plan, i.e., alternative plans which achieve the same goal and use the same actions, but differ in the order of those actions and how the variables in those actions have been bound.
+MKTR is an application for finding *reinstantiations* of a plan, i.e., alternative plans which achieve the same goal and use the same actions, but differ in the order of those actions and how the variables in those actions have been bound.
 
-A set of re-instantiations can be compactly represented as a *constraint formula*, i.e., a formula expressed in a fragment of first-order logic, where each model represents an alternative to the original plan.
+A set of reinstantiations can be compactly represented as a *constraint formula*, i.e., a formula expressed in a fragment of first-order logic, where each model represents an alternative to the original plan.
 While computing a model of a constraint formula is an NP-complete problem, if the formula's *treewidth* is bounded by `k`, a model can be found in time `O(n^k)`.
 
 MKTR first generates a constraint formula that is equivalent to a simple deordering of the original plan.
@@ -106,7 +106,7 @@ It then iteratively and greedily relaxes this formula, while keeping its treewid
 When the formula cannot be relaxed any further without its treewidth exceeding the input value, the final constraint formula is returned.
 
 In this program, constraint formulae are implemented as constraint satisfaction problems (CSPs).
-The output to the MKTR is a CSP of bounded treewidth, each solution to which represents a different re-instantiation of the input plan.
+The output to the MKTR is a CSP of bounded treewidth, each solution to which represents a different reinstantiation of the input plan.
 
 ## Running MKTR
 
