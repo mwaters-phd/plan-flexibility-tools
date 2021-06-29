@@ -292,22 +292,23 @@ public class MrrMain {
 
 	public static enum OptAlgorithm {
 
-		MD_ORIG 		(true, CausalStructureOpt.DEORDER,	AsymmetryOpt.NONE, EqualityOpt.NONE, AcyclicityOpt.ATOM, false), 	// Muise's minimum deorder
-		MR_ORIG 		(true, CausalStructureOpt.REORDER, 	AsymmetryOpt.NONE, EqualityOpt.NONE, AcyclicityOpt.ATOM, false), 	// Muise's minimum reorder 		
+		MD_NO_OPT 	(true, CausalStructureOpt.DEORDER,	AsymmetryOpt.NONE, EqualityOpt.NONE, AcyclicityOpt.ATOM, false), 	// Muise's minimum deorder
+		MR_NO_OPT 	(true, CausalStructureOpt.REORDER, 	AsymmetryOpt.NONE, EqualityOpt.NONE, AcyclicityOpt.ATOM, false), 	// Muise's minimum reorder 		
 
-		MD 		(true, CausalStructureOpt.DEORDER,	AsymmetryOpt.NONE, EqualityOpt.NONE, AcyclicityOpt.ATOM, true), 	// minimum deorder
-		MR 		(true, CausalStructureOpt.REORDER, 	AsymmetryOpt.NONE, EqualityOpt.NONE, AcyclicityOpt.ATOM, true), 	// minimum reorder 		
-		MR_OPSB	(true, CausalStructureOpt.REORDER, 	AsymmetryOpt.OP_TYPES, EqualityOpt.NONE, AcyclicityOpt.ATOM, true), 	// minimum reorder 		
+		MD 			(true, CausalStructureOpt.DEORDER,	AsymmetryOpt.NONE, EqualityOpt.NONE, AcyclicityOpt.ATOM, true), 	// minimum deorder
+		MR 			(true, CausalStructureOpt.REORDER, 	AsymmetryOpt.NONE, EqualityOpt.NONE, AcyclicityOpt.ATOM, true), 	// minimum reorder 		
+		MR_OPSB		(true, CausalStructureOpt.REORDER, 	AsymmetryOpt.OP_TYPES, EqualityOpt.NONE, AcyclicityOpt.ATOM, true), 	
 
-		MRD 	 (false, CausalStructureOpt.DEORDER, AsymmetryOpt.NONE, EqualityOpt.ATOM, AcyclicityOpt.ATOM, true),	// minimum reinstantiated deorder
-		//MRD_CSSB (false, CausalStructureOpt.DEORDER, AsymmetryOpt.INIT_STATE, EqualityOpt.ATOM, AcyclicityOpt.ATOM, true),	// minimum reinstantiated deorder w/SB
+		MRD 	 	(false, CausalStructureOpt.DEORDER, AsymmetryOpt.NONE, EqualityOpt.ATOM, AcyclicityOpt.ATOM, true),		// minimum reinstantiated deorder
+		MRD_NO_OPT 	(false, CausalStructureOpt.DEORDER, AsymmetryOpt.NONE, EqualityOpt.ATOM, AcyclicityOpt.ATOM, false),
 		
-		MRR 	(false, CausalStructureOpt.REORDER, AsymmetryOpt.NONE, EqualityOpt.ATOM, AcyclicityOpt.ATOM, true),	// minimum reinstantiated reorder
-		MRR_OPSB (false, CausalStructureOpt.REORDER, AsymmetryOpt.OP_TYPES, EqualityOpt.ATOM, AcyclicityOpt.ATOM, true),
-		MRR_CSSB (false, CausalStructureOpt.REORDER, AsymmetryOpt.STRUCT,   EqualityOpt.ATOM, AcyclicityOpt.ATOM, true),
+		MRR 		(false, CausalStructureOpt.REORDER, AsymmetryOpt.NONE, EqualityOpt.ATOM, AcyclicityOpt.ATOM, true),		// minimum reinstantiated reorder
+		MRR_OPSB 	(false, CausalStructureOpt.REORDER, AsymmetryOpt.OP_TYPES, EqualityOpt.ATOM, AcyclicityOpt.ATOM, true),
+		MRR_CSSB 	(false, CausalStructureOpt.REORDER, AsymmetryOpt.STRUCT,   EqualityOpt.ATOM, AcyclicityOpt.ATOM, true),
+		MRR_NO_OPT 	(false, CausalStructureOpt.REORDER, AsymmetryOpt.NONE, EqualityOpt.ATOM, AcyclicityOpt.ATOM, false),
 		
-		EOG  (true,  CausalStructureOpt.CUSTOM, AsymmetryOpt.NONE, EqualityOpt.NONE, AcyclicityOpt.ATOM, false), // explanation-based order generalisation
-		REOG (false, CausalStructureOpt.CUSTOM, AsymmetryOpt.NONE, EqualityOpt.ATOM, AcyclicityOpt.ATOM, true); // reinstantiated explanation-based order generalisation
+		EOG 		(true,  CausalStructureOpt.CUSTOM, AsymmetryOpt.NONE, EqualityOpt.NONE, AcyclicityOpt.ATOM, false),		// explanation-based order generalisation
+		REOG 		(false, CausalStructureOpt.CUSTOM, AsymmetryOpt.NONE, EqualityOpt.ATOM, AcyclicityOpt.ATOM, true); 		// reinstantiated explanation-based order generalisation
 
 		public final boolean ground;
 		public AsymmetryOpt asymm;
@@ -316,15 +317,14 @@ public class MrrMain {
 		public CausalStructureOpt csOpt;
 		public boolean optTransClosure;
 
-		private OptAlgorithm(boolean ground, CausalStructureOpt csOpt, AsymmetryOpt asymm, EqualityOpt equal, AcyclicityOpt acyc, boolean filterLinks) {
+		private OptAlgorithm(boolean ground, CausalStructureOpt csOpt, AsymmetryOpt asymm, EqualityOpt equal, AcyclicityOpt acyc, boolean optTransClosure) {
 			this.ground = ground;
 			this.csOpt = csOpt;
 			this.asymm = asymm;
 			this.eq = equal;
 			this.acyc = acyc;
-			this.optTransClosure = filterLinks;
+			this.optTransClosure = optTransClosure;
 		}
-
 	}
 
 	public static class MrrOptions extends PddlCmdLineOptions {
@@ -357,9 +357,7 @@ public class MrrMain {
 		public boolean decode = false;
 		
 		@Option(name = "--model-file", usage = "model file")
-		public File model = null;
-
-		
+		public File model = null;	
 		
 	}
 

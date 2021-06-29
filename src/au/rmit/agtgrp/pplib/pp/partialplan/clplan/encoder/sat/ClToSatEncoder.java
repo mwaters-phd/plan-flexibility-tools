@@ -295,27 +295,6 @@ public class ClToSatEncoder extends ConstraintEncoder<SatFormula, CnfEncoderOpti
 		}
 		return filtered;
 
-		/*		
-
-		switch (options.csOpt) {
-		case CUSTOM:
-			CausalStructure filtered = new CausalStructure(causalStruct.isTotalOrder(), causalStruct.isGround());
-			for (PcLink pcLink : causalStruct) {
-				if (pcLink.getProducer().operator.equals(plan.getInitAction()) || 
-					pcLink.getConsumer().operator.equals(plan.getGoalAction()) ||
-					options.customPrecGraph.containsEdge(pcLink.getProducer().operator, pcLink.getConsumer().operator))
-
-					filtered.addProducerConsumerOption(pcLink);
-			}
-			return filtered;
-		case DEORDER:
-			// assume this has been done before
-		case REORDER:
-			// nothing to do
-		default:
-			return causalStruct;
-		}
-		 */
 	}
 
 
@@ -885,7 +864,7 @@ public class ClToSatEncoder extends ConstraintEncoder<SatFormula, CnfEncoderOpti
 		for (int i = 0; i < vars.size(); i++) {
 			Variable v1 = vars.get(i);
 			for (int j = i+1; j < vars.size(); j++) {
-				if (j == i)
+				if (j == i) //wtf
 					continue;
 				Variable v2 = vars.get(j);
 				Integer p12 = propMap.getEqualityProposition(v1, v2);

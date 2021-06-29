@@ -50,7 +50,7 @@ MRR and MKTR support all features of basic `STRIPS`, and some aspects of `ADL`, 
 Plan files with a `.m` extension are assumed to be [Madagascar](https://research.ics.aalto.fi/software/sat/madagascar/) parallel plans (e.g., `example/p01.pddl.m`), otherwise plans are assumed to be standard IPC format plans (e.g., `example/p01.pddl.bfws`).
 
 
-# MRR: Minimum Reinsantiated Reorder
+# MRR: Minimum Reinstantiated Reorder
 
 MRR is an implementation of a MaxSAT-based technique for finding *minimum deorderings and reorderings* of a partial order plan. It can be configured to either find a *minimum deorder* or *minimum reorder* as per [Muise et al.](https://www.jair.org/index.php/jair/article/view/11024), or a *minimum reinstantiated deorder* or *minimum reinstantiated reorder* as per [Waters et al.](https://www.ijcai.org/Proceedings/2020/573).
 Some configurations can be extended with symmetry breaking constraints that reduce the MaxSAT solving time.
@@ -89,8 +89,8 @@ Options:
 The `example` directory contains a small planning instance from the IPC `rovers` domain, and three different plans. Run MRR over the example with the following commmand:
 
 ```
-./mktr.sh --dfile example/domain.pddl --ifile example/p01.pddl
-		  --pfile example/p01.pddl.m --alg MRR --verbose
+./mrr.py --dfile example/domain.pddl --ifile example/p01.pddl
+		  --pfile example/p01.pddl.m --encoder MRR --verbose
 			  	 
 ```
 
